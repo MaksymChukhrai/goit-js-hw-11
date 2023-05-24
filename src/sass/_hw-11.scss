@@ -1,0 +1,46 @@
+.container-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a6f6f;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 999; 
+  }
+  
+.search-form {
+  margin-top: 23px;
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-icon {
+  padding:0;
+  position: absolute;
+  top: 50%;
+  left: 180px;
+  transform: translateY(-70%);
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-color: transparent; 
+  border: none; 
+}
+
+  .search-input {
+    padding-right: 30px; /* Добавляем отступ справа для размещения иконки */
+  height: 35px;
+  max-width: 500px;
+  border-radius: 10px;
+  }
+    
+  /* Дополнительные стили для иконки при наведении курсора */
+  .search-icon:hover {
+    opacity: 0.7; /* снижаем прозрачность иконки */
+  cursor:pointer;
+  }
