@@ -11,7 +11,7 @@ const messageContainer = document.querySelector('.message');
 let currentPage = 1;
 const perPage = 40;
 
-const lightbox = new SimpleLightbox('.gallery');
+const lightbox = new SimpleLightbox('.photo-link');
 
 async function fetchImages(query, page = 1) {
   const apiKey = '36686199-3af1daf12518f9079ef45ad7e';
@@ -91,12 +91,6 @@ async function handleSearchFormSubmit(event) {
     showMessage(data.totalHits);
   }
 }
-
-// При виконанні запиту та отриманні нових зображень
-// Видаляємо клас is-hidden у кнопки, щоб вона стала видимою
-const loadMoreButton = document.querySelector('.load-more');
-loadMoreButton.classList.add('is-hidden');
-
 
 function showMessage(totalHits) {
     Notiflix.Notify.warning(`Hooray! We found ${totalHits} images.`);
