@@ -40,6 +40,9 @@ function displayImages(images) {
   });
 }
 
+// Ініціалізація SimpleLightbox
+const lightbox = new SimpleLightbox('.photo-link');
+
 // Функція для створення HTML-розмітки картки із зображенням
 function createCardHTML(image) {
   return `
@@ -123,5 +126,4 @@ async function loadMoreImages() {
 searchForm.addEventListener('submit', handleSearchFormSubmit);
 loadMoreBtn.addEventListener('click', loadMoreImages);
 
-// Ініціалізація SimpleLightbox
-const lightbox = new SimpleLightbox('.photo-link');
+
