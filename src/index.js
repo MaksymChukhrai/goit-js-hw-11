@@ -11,7 +11,11 @@ const messageContainer = document.querySelector('.message');
 let currentPage = 1;
 const perPage = 40;
 
-const lightbox = new SimpleLightbox('.gallery');
+const lightbox = new SimpleLightbox('.gallery', {
+  sourceAttr: 'href'
+
+});
+
 
 async function fetchImages(query, page = 1) {
   const apiKey = '36686199-3af1daf12518f9079ef45ad7e';
@@ -33,15 +37,19 @@ function displayImages(images) {
   gallery.querySelectorAll('.photo-link').forEach((link) => {
     link.addEventListener('click', (event) => {
       event.preventDefault();
-      lightbox.open();
+      const largeImageURL = link.href; // Получаем URL большого изображения из атрибута href
+      console.log('Large Image URL:', largeImageURL);
+      lightbox.open(largeImageURL); // Передаем URL большого изображения в lightbox.open()
     });
   });
 }
 
+
+
 function createCardHTML(image) {
   return `
     <div class="photo-card">
-      <a href="${image.largeImageURL}" class="photo-link">
+      <a href="${image.largeImageURL}" class="photo-link" data-lightbox="gallery">
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
       </a>
       <div class="info">
@@ -61,6 +69,17 @@ function createCardHTML(image) {
     </div>
   `;
 }
+
+function displayImages(images) {
+  const cardsHTML = images.hits.map((image) => createCardHTML(image)).join('');
+  gallery.innerHTML += cardsHTML;
+
+  const lightbox = new SimpleLightbox('.photo-link', {
+    sourceAttr: 'href',
+  });
+}
+
+
 
 function clearGallery() {
   gallery.innerHTML = '';
