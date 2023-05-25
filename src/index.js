@@ -12,10 +12,8 @@ let currentPage = 1;
 const perPage = 40;
 
 const lightbox = new SimpleLightbox('.gallery', {
-  sourceAttr: 'href'
-
+  sourceAttr: 'href',
 });
-
 
 async function fetchImages(query, page = 1) {
   const apiKey = '36686199-3af1daf12518f9079ef45ad7e';
@@ -29,22 +27,6 @@ async function fetchImages(query, page = 1) {
     return null;
   }
 }
-
-function displayImages(images) {
-  const cardsHTML = images.hits.map((image) => createCardHTML(image)).join('');
-  gallery.innerHTML += cardsHTML;
-
-  gallery.querySelectorAll('.photo-link').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const largeImageURL = link.href; // Получаем URL большого изображения из атрибута href
-      console.log('Large Image URL:', largeImageURL);
-      lightbox.open(largeImageURL); // Передаем URL большого изображения в lightbox.open()
-    });
-  });
-}
-
-
 
 function createCardHTML(image) {
   return `
@@ -78,8 +60,6 @@ function displayImages(images) {
     sourceAttr: 'href',
   });
 }
-
-
 
 function clearGallery() {
   gallery.innerHTML = '';
@@ -116,11 +96,10 @@ async function handleSearchFormSubmit(event) {
 const loadMoreButton = document.querySelector('.load-more');
 loadMoreButton.classList.add('is-hidden');
 
-
 function showMessage(totalHits) {
-    Notiflix.Notify.warning(`Hooray! We found ${totalHits} images.`);
-  }
-  
+  Notiflix.Notify.warning(`Hooray! We found ${totalHits} images.`);
+}
+
 async function loadMoreImages() {
   currentPage += 1;
 
@@ -138,3 +117,5 @@ async function loadMoreImages() {
 
 searchForm.addEventListener('submit', handleSearchFormSubmit);
 loadMoreBtn.addEventListener('click', loadMoreImages);
+
+  
