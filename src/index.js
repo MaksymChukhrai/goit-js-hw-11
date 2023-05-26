@@ -6,7 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-const messageContainer = document.querySelector('.message');
+// const messageContainer = document.querySelector('.message');
 
 let currentPage = 1;
 const perPage = 40;
@@ -54,7 +54,12 @@ function createCardHTML(image) {
 
 function displayImages(images) {
   const cardsHTML = images.hits.map((image) => createCardHTML(image)).join('');
-  gallery.innerHTML += cardsHTML;
+  gallery.insertAdjacentHTML('beforeend', cardsHTML);
+
+  setTimeout(() => {
+    const lastCard = gallery.lastElementChild;
+    lastCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, 500);
 
   const lightbox = new SimpleLightbox('.photo-link', {
     sourceAttr: 'href',
