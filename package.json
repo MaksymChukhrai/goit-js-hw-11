@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://MaksymChukhrai.github.io/Magic-Picture-Finder",
+  "homepage": "https://MaksymChukhrai.github.io/magic-picture-finder-new",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Magic-Picture-Finder/"
